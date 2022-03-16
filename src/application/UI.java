@@ -38,8 +38,8 @@ public class UI {
 			return new ChessPosition(column,row);
 		}
 		catch (RuntimeException e) {
-			throw new InputMismatchException("Erro lendo posição do xadrês. "
-					+ "Valores válidos vão de a1 até h8");
+			throw new InputMismatchException("Erro lendo posiÃ§Ã£o do xadrÃªs "
+					+ "Valores vÃ¡lidos vÃ£o de a1 atÃ© h8");
 		}
 	}
 
