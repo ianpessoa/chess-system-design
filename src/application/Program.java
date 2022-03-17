@@ -20,26 +20,34 @@ public class Program {
 		List<ChessPiece> captured = new ArrayList<ChessPiece>();
 		while (!chessMatch.getCheckMate()) {
 			try {
-			UI.clearScreen();
-			UI.printMatch(chessMatch, captured);
-			System.out.println();
-			System.out.println("Origem: ");
-			ChessPosition source = UI.readChessPosition(sc);
-			
-			boolean[][] possibleMoves = chessMatch.possibleMoves(source);
-			UI.clearScreen();
-			UI.printBoard(chessMatch.getPieces(), possibleMoves);
-			
-			System.out.println();
-			System.out.println("Destino: ");
-			ChessPosition target = UI.readChessPosition(sc);
-			
-			ChessPiece chessPiece = chessMatch.performeChessMove(source, target);
-			
-			if (chessPiece != null) {
-					captured.add(chessPiece);
+				UI.clearScreen();
+				UI.printMatch(chessMatch, captured);
+				System.out.println();
+				System.out.print("Origem: ");
+				ChessPosition source = UI.readChessPosition(sc);
+				
+				boolean[][] possibleMoves = chessMatch.possibleMoves(source);
+				UI.clearScreen();
+				UI.printBoard(chessMatch.getPieces(), possibleMoves);
+				
+				System.out.println();
+				System.out.print("Destino: ");
+				ChessPosition target = UI.readChessPosition(sc);
+				
+				ChessPiece chessPiece = chessMatch.performeChessMove(source, target);
+				
+				if (chessPiece != null) {
+						captured.add(chessPiece);
 				}
+				
+				if (chessMatch.getPromoted() != null) {
+					System.out.print("Digite a peca de promocao. (B/N/R/Q): ");
+					String type = sc.nextLine();
+					chessMatch.replacePromotedPiece(type);
+				}
+				
 			}
+			
 			catch (ChessException e) {
 				System.out.println(e.getMessage());
 				sc.nextLine();
